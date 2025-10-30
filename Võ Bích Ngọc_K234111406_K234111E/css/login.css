@@ -1,0 +1,83 @@
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-card, .logout-card {
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  padding: 40px 50px;
+  width: 380px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.login-title {
+  margin-bottom: 25px;
+  color: #4b2d47;
+}
+
+.form-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #4b2d47;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--pink-light);
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.form-group input:focus {
+  border-color: var(--pink-dark);
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+button {
+  background-color: var(--pink-dark);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 0;
+  width: 100%;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: var(--pink-light);
+  color: #4b2d47;
+}
+
+.error-box {
+  margin-top: 10px;
+  color: #d75bb8;
+  font-size: 13px;
+  display: none;
+}
+
+.hidden {
+  display: none;
+}

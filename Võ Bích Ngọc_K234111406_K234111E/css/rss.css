@@ -1,0 +1,99 @@
+h2 {
+  text-align: center;
+  font-size: 30px;
+  color: var(--pink-dark);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  margin-bottom: 35px;
+  letter-spacing: 1px;
+}
+
+table {
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(215, 91, 184, 0.15);
+  overflow: hidden;
+  animation: fadeIn 0.6s ease-out;
+  backdrop-filter: blur(6px);
+}
+
+thead {
+  background: linear-gradient(135deg, var(--pink-dark), var(--violet));
+  color:var(--pink-dark);
+}
+
+th, td {
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid var(--pink-light);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+th {
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+tr {
+  transition: all 0.3s ease;
+}
+
+tr:hover {
+  background: rgba(249, 217, 235, 0.5);
+  transform: translateY(-2px);
+}
+
+a {
+  color: var(--pink-dark);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--peach);
+}
+
+img {
+  width: 100px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+#vnexpress_tbody:empty::before {
+  content: "Đang tải tin thể thao...";
+  display: block;
+  text-align: center;
+  padding: 40px;
+  color: var(--pink-dark);
+  font-style: italic;
+  font-size: 16px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  table {
+    width: 95%;
+  }
+  th, td {
+    padding: 10px;
+    font-size: 13px;
+  }
+  img {
+    width: 70px;
+  }
+}

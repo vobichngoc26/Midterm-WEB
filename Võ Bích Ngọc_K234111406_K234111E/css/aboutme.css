@@ -1,0 +1,267 @@
+
+
+header {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  background: linear-gradient(135deg, #d75bb8, #e995a1, #f5ecae, #f3b0f2);
+  padding: 20px 0;
+  border-bottom: 3px solid var(--pink-dark);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+}
+header h1 {
+  font-size: 36px;
+  color: #d75bb8;
+  font-family: "Cormorant Garamond", serif;
+  text-align: center;
+  text-shadow: 
+    2px 2px 0 #f6c6e2,
+    4px 4px 0 #e995a1;
+}
+
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 50px;
+}
+
+.profile-left {
+  min-width: 300px;
+  text-align: center;
+}
+
+/* --- FLIP CARD --- */
+.flip-card {
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+   margin-bottom: 5px;
+   margin-left: 70px;
+}
+
+.flip-card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.flip-card-front img, .flip-card-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* --- MUSIC PLAYER --- */
+.music-player {
+  padding: 15px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+#progress {
+  flex: 1;
+}
+
+.controls {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.controls button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.controls button:hover {
+  transform: scale(1.1);
+}
+
+.waveform { 
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-end; 
+    height: 50px;
+    margin-top:5px; 
+} 
+.waveform span { 
+    display: block; 
+    width: 3px; 
+    margin: 0 1px; 
+    background: #000; 
+    animation: wave 1s infinite ease-in-out; 
+} 
+@keyframes wave { 
+    0%,100% { height: 10px; } 
+    50% { height: 40px; } 
+} 
+.waveform span:nth-child(2) { animation-delay: .1s; } 
+.waveform span:nth-child(3) { animation-delay: .2s; } 
+.waveform span:nth-child(4) { animation-delay: .3s; } 
+.waveform span:nth-child(5) { animation-delay: .4s; } 
+.waveform span:nth-child(6) { animation-delay: .5s; } 
+.waveform span:nth-child(7) { animation-delay: .6s; } 
+.waveform span:nth-child(8) { animation-delay: .1s; } 
+.waveform span:nth-child(9) { animation-delay: .2s; } 
+.waveform span:nth-child(10) { animation-delay: .3s; } 
+.waveform span:nth-child(11) { animation-delay: .4s; } 
+.waveform span:nth-child(12) { animation-delay: .5s; } 
+.waveform span:nth-child(13) { animation-delay: .6s; } 
+.waveform span:nth-child(14) { animation-delay: .1s; } 
+.waveform span:nth-child(15) { animation-delay: .2s; } 
+.waveform span:nth-child(16) { animation-delay: .3s; } 
+.waveform span:nth-child(17) { animation-delay: .4s; } 
+.waveform span:nth-child(18) { animation-delay: .5s; } 
+.waveform span:nth-child(19) { animation-delay: .6s; } 
+.waveform span:nth-child(20) { animation-delay: .1s; } 
+.waveform span:nth-child(21) { animation-delay: .2s; } 
+.waveform span:nth-child(22) { animation-delay: .3s; } 
+.waveform span:nth-child(23) { animation-delay: .4s; } 
+.waveform span:nth-child(24) { animation-delay: .5s; } 
+.waveform span:nth-child(25) { animation-delay: .6s; } 
+.waveform span:nth-child(26) { animation-delay: .3s; } 
+.waveform span:nth-child(27) { animation-delay: .1s; } 
+.waveform span:nth-child(28) { animation-delay: .2s; } 
+.waveform span:nth-child(29) { animation-delay: .3s; } 
+.waveform span:nth-child(30) { animation-delay: .4s; } 
+.waveform span:nth-child(31) { animation-delay: .5s; } 
+.waveform span:nth-child(32) { animation-delay: .6s; } 
+.waveform span:nth-child(33) { animation-delay: .1s; } 
+.waveform span:nth-child(34) { animation-delay: .2s; } 
+.waveform span:nth-child(35) { animation-delay: .3s; } 
+.waveform span:nth-child(36) { animation-delay: .4s; } 
+.waveform span:nth-child(37) { animation-delay: .5s; } 
+.waveform span:nth-child(38) { animation-delay: .6s; } 
+.waveform span:nth-child(39) { animation-delay: .1s; } 
+.waveform span:nth-child(40) { animation-delay: .2s; } 
+.waveform span:nth-child(41) { animation-delay: .3s; } 
+.waveform span:nth-child(42) { animation-delay: .4s; } 
+.waveform span:nth-child(43) { animation-delay: .1s; } 
+.waveform span:nth-child(44) { animation-delay: .2s; } 
+.waveform span:nth-child(45) { animation-delay: .3s; } 
+.waveform span:nth-child(46) { animation-delay: .4s; } 
+.waveform span:nth-child(47) { animation-delay: .5s; } 
+.waveform span:nth-child(48) { animation-delay: .6s; } 
+.waveform span:nth-child(49) { animation-delay: .1s; } 
+.waveform span:nth-child(50) { animation-delay: .2s; } 
+.waveform span:nth-child(51) { animation-delay: .3s; } 
+.waveform span:nth-child(52) { animation-delay: .4s; } 
+.waveform span:nth-child(53) { animation-delay: .5s; } 
+.waveform span:nth-child(54) { animation-delay: .6s; } 
+.waveform span:nth-child(55) { animation-delay: .1s; } 
+.waveform span:nth-child(56) { animation-delay: .2s; } 
+.waveform span:nth-child(57) { animation-delay: .3s; } 
+.waveform span:nth-child(58) { animation-delay: .4s; } 
+.waveform span:nth-child(59) { animation-delay: .4s; } 
+.waveform span:nth-child(60) { animation-delay: .1s; } 
+.waveform span:nth-child(61) { animation-delay: .2s; } 
+.waveform span:nth-child(62) { animation-delay: .3s; } 
+.waveform span:nth-child(63) { animation-delay: .4s; } 
+.waveform span:nth-child(64) { animation-delay: .5s; } 
+.waveform span:nth-child(65) { animation-delay: .6s; } 
+.waveform span:nth-child(66) { animation-delay: .1s; } 
+.waveform span:nth-child(67) { animation-delay: .2s; } 
+.waveform span:nth-child(68) { animation-delay: .3s; } 
+.waveform span:nth-child(69) { animation-delay: .4s; } 
+.waveform span:nth-child(70) { animation-delay: .5s; } 
+.waveform span:nth-child(71) { animation-delay: .6s; } 
+.waveform span:nth-child(72) { animation-delay: .1s; } 
+.waveform span:nth-child(73) { animation-delay: .2s; } 
+.waveform span:nth-child(74) { animation-delay: .3s; } 
+.waveform span:nth-child(75) { animation-delay: .4s; } 
+.waveform span:nth-child(76) { animation-delay: .6s; } 
+.waveform span:nth-child(77) { animation-delay: .1s; } 
+.waveform span:nth-child(78) { animation-delay: .2s; } 
+.waveform span:nth-child(79) { animation-delay: .3s; } 
+.waveform span:nth-child(80) { animation-delay: .4s; } 
+
+.controls { 
+    display: flex; 
+    justify-content: center; 
+    gap: 15px; font-size: 18px; }
+
+/* --- PROFILE INFO --- */
+.profile-right {
+  min-width: 320px;
+  background-image: url("/images/pink\ theme.jpg"); /* hình nền card */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 15px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+  padding: 30px;
+  margin-top:20px;
+}
+
+.profile-right h2 {
+  margin-top: 0;
+  color: var(--pink-dark);
+  text-align:center;
+}
+
+.profile-right table {
+    width: auto;
+    margin: 0 auto;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+.profile-right th {
+  text-align: left;
+  padding: 8px;
+  color: #5a2b47;
+  width: 130px;
+}
+
+.profile-right td {
+  padding: 8px;
+}
+.contact-info a {
+    color: var(--peach);  
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.contact-info a:hover {
+    color: var(--pink-dark)
+}

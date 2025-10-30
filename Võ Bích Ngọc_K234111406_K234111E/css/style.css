@@ -1,0 +1,17 @@
+:root {
+  --pink-light: #f6c6e2;
+  --pink-dark: #d75bb8;
+  --yellow-soft: #f5ecae;
+  --peach: #e995a1;
+  --pink-violet: #f3b0f2;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  margin: 0;
+  color: #4b2d47;
+  background-image: url("/images/hinh\ nen.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

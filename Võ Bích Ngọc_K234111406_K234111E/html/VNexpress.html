@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title> Võ Bích Ngọc - RSS Thể Thao</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/rss.css">
+</head>
+<body>
+    <h2>Tin RSS Thể Thao từ VnExpress</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Public Date</th>
+                <th>Link</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody id="vnexpress_tbody"></tbody>
+    </table>
+
+    <script>
+        async function loadRSS() {
+            try {
+                const url = "https://vnexpress.net/rss/the-thao.rss";
+                const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
+                const data = await res.json();
+
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(data.contents, "text/xml");
+
+                const items = xml.querySelectorAll("item");
+                const tbody = document.getElementById("vnexpress_tbody");
+                tbody.innerHTML = "";
+
+                items.forEach((item) => {
+                    const title = item.querySelector("title")?.textContent || "";
+                    const desc = item.querySelector("description")?.textContent || "";
+                    const pubDate = item.querySelector("pubDate")?.textContent || "";
+                    const link = item.querySelector("link")?.textContent || "";
+
+                    // Trích hình ảnh từ description
+                    const imgMatch = desc.match(/<img[^>]+src="([^">]+)"/);
+                    const imgSrc = imgMatch ? imgMatch[1] : "";
+
+                    // Loại bỏ HTML trong description
+                    const textDesc = desc.replace(/<[^>]*>?/gm, "").trim();
+
+                    tbody.innerHTML += `
+                        <tr>
+                            <td>${title}</td>
+                            <td>${textDesc}</td>
+                            <td>${pubDate}</td>
+                            <td><a href="${link}" target="_blank">Xem bài</a></td>
+                            <td>${imgSrc ? `<img src="${imgSrc}" width="100">` : ""}</td>
+                        </tr>
+                    `;
+                });
+            } catch (error) {
+                console.error("Lỗi khi tải RSS:", error);
+                document.getElementById("vnexpress_tbody").innerHTML = `
+                    <tr>
+                        <td colspan="5">Không thể tải dữ liệu. Vui lòng thử lại sau.</td>
+                    </tr>
+                `;
+            }
+        }
+
+        loadRSS();
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title> Võ Bích Ngọc - Weather API </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/weatherapi.css">
+  </head>
+
+  <body>
+     <h2>🌦 Dự báo thời tiết Tuổi Trẻ</h2>
+    <select id="provinces">
+        <option value="">-- Chọn tỉnh/thành phố --</option>
+    </select>
+    <div id="weather-result"></div>
+
+    <script>
+        var ids = [
+            '2347719','20070078','20070086','2347731','2347730','20070081','20070087','20070084',
+            '20070088','2347703','2347704','20070082','2347732','28301718','20070085','1252375',
+            '2347720','28301719','2347721','2347722','2347733','2347727','2347728','2347734',
+            '2347741','2347736','2347737','20070079','20070080','2347707','28301720','2347738',
+            '2347723','20070076','2347708','2347710','2347740','2347709','2347718','20070089',
+            '2347742','2347743','2347744','20070091','2347745','2347746','2347711','20070077',
+            '2347712','2347747','2347748','2347713','2347715','2347716','20070083','2347749',
+            '2347717','2347750','2347751','2347714','2347752','20070090','2347729','2347753'
+        ];
+
+        var names = [
+            'An Giang','Bình Dương','Bình Phước','Bình Thuận','Bình Định','Bạc Liêu','Bắc Giang','Bắc Kạn',
+            'Bắc Ninh','Bến Tre','Cao Bằng','Cà Mau','Cần Thơ','Điện Biên','Đà Nẵng','Đà Lạt',
+            'Đắk Lắk','Đắk Nông','Đồng Nai','Đồng Tháp','Gia Lai','Hà Nội','TP. Hồ Chí Minh','Hà Giang',
+            'Hà Nam','Hà Tĩnh','Hòa Bình','Hưng Yên','Hải Dương','Hải Phòng','Hậu Giang','Khánh Hòa',
+            'Kiên Giang','Kon Tum','Lai Châu','Long An','Lào Cai','Lâm Đồng','Lạng Sơn','Nam Định',
+            'Nghệ An','Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình','Quảng Nam','Quảng Ngãi',
+            'Quảng Ninh','Quảng Trị','Sóc Trăng','Sơn La','Thanh Hóa','Thái Bình','Thái Nguyên','Thừa Thiên Huế',
+            'Tiền Giang','Trà Vinh','Tuyên Quang','Tây Ninh','Vĩnh Long','Vĩnh Phúc','Vũng Tàu','Yên Bái'
+        ];
+
+        function load_provinces() {
+            const provinces = document.getElementById("provinces");
+            for (let i = 0; i < ids.length; i++) {
+                const opt = document.createElement("option");
+                opt.value = ids[i];
+                opt.textContent = names[i];
+                provinces.appendChild(opt);
+            }
+            
+            // Thêm event listener sau khi load xong
+            provinces.addEventListener('change', function() {
+                show_detail_weather_forecast(this.value);
+            });
+        }
+
+        function show_detail_weather_forecast(id) {
+            if (!id) {
+                document.getElementById("weather-result").innerHTML = "Chọn tỉnh để xem thông tin thời tiết.";
+                return;
+            }
+
+            document.getElementById("weather-result").innerHTML = "Đang tải dữ liệu...";
+            
+            // Sử dụng API thay thế nếu API gốc lỗi
+            const apiUrl = `https://api.codetabs.com/v1/proxy?quest=https://utils3.cnnd.vn/ajax/weatherinfo/${id}.htm`;
+            
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Lỗi kết nối API');
+                    }
+                    return response.json();
+                })
+                .then(res => {
+                    if (res.Data && res.Data.data && res.Data.data.datainfo) {
+                        const data = res.Data.data.datainfo;
+                        displayWeatherData(data);
+                    } else {
+                        throw new Error('Dữ liệu không hợp lệ');
+                    }
+                })
+                .catch(error => {
+                    console.error('Lỗi:', error);
+                    document.getElementById("weather-result").innerHTML = 
+                        "Không thể tải dữ liệu thời tiết. Vui lòng thử lại sau.";
+                });
+        }
+
+        function displayWeatherData(data) {
+            document.getElementById("weather-result").innerHTML = `
+                <div class="weather-card">
+                    <h3>${data.location || 'Không có dữ liệu'}</h3>
+                    ${data.shadow_icon ? `<img src="${data.shadow_icon}" alt="icon thời tiết">` : ''}
+                    <div class="temp">${data.temperature || 'N/A'}°${data.degree || 'C'}</div>
+                    <p>${data.status || 'Không có thông tin'}</p>
+                    <table class="detail-table">
+                        <tr><th>Cảm giác như:</th><td>${data.feels_like || 'N/A'}°${data.degree || 'C'}</td></tr>
+                        <tr><th>Độ ẩm:</th><td>${data.humidity || 'N/A'}</td></tr>
+                        <tr><th>Tốc độ gió:</th><td>${data.wind ? data.wind.index + ' ' + data.wind.unit : 'N/A'}</td></tr>
+                        <tr><th>Hướng gió:</th><td>${data.windDirection || 'N/A'}</td></tr>
+                        <tr><th>UV:</th><td>${data.UV_index ? data.UV_index.index + ' (' + data.UV_index.status + ')' : 'N/A'}</td></tr>
+                        <tr><th>Bình minh:</th><td>${data.sunrise || 'N/A'}</td></tr>
+                        <tr><th>Hoàng hôn:</th><td>${data.sunset || 'N/A'}</td></tr>
+                        <tr><th>Chất lượng không khí:</th><td>${data.air ? data.air.status + ' (AQI ' + data.air.aqi + ')' : 'N/A'}</td></tr>
+                    </table>
+                </div>`;
+        }
+
+        // Load khi trang ready
+        document.addEventListener('DOMContentLoaded', load_provinces);
+    </script>
+</html>
